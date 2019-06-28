@@ -3,11 +3,8 @@
 
 """Tests for `spacetx_biohub_writer` package."""
 
-import pytest
-
 from click.testing import CliRunner
 
-from spacetx_biohub_writer import spacetx_biohub_writer
 from spacetx_biohub_writer import cli
 
 

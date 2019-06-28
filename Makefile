@@ -53,6 +53,9 @@ clean-test: ## remove test and coverage artifacts
 lint: ## check style with flake8
 	flake8 spacetx_biohub_writer tests
 
+mypy: ## check typing with mypy
+	mypy --ignore-missing-imports spacetx_biohub_writer tests
+
 test: ## run tests quickly with the default Python
 	py.test
 
