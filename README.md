@@ -1,7 +1,7 @@
 # spacetx-biohub-writer
 Conversion tool from biohub's DB format to spacetx format
 
-# Required columns in the CSV
+## Required columns in the CSV
 
 | Column | Description                                                                              |
 |--------|------------------------------------------------------------------------------------------|
@@ -18,15 +18,15 @@ Conversion tool from biohub's DB format to spacetx format
 | path   | Relative path to the tile, as specified from the s3_prefix argument                      |
 | sha256 | SHA256 checksum of the tile                                                              |
 
-# Example
+## Example
 
-## Converting from a single CSV representing an image in an experiment.
+### Converting from a single CSV representing an image in an experiment.
 
 ```
 % spacetx_biohub_writer --csv-file primary primary.csv --s3-prefix  s3://starfish.data.spacetx/osmFISH/formatted/20190626/ --tile-width 2048 --tile-height 2048 -o output
 ```
 
-## Converting from multiple CSVs representing an image in an experiment.
+### Converting from multiple CSVs representing an image in an experiment.
 
 ```
 % spacetx_biohub_writer --csv-file primary primary.csv --csv-file nuclei nuclei.csv --s3-prefix  s3://starfish.data.spacetx/osmFISH/formatted/20190626/ --tile-width 2048 --tile-height 2048 -o output
