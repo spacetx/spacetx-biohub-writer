@@ -160,13 +160,21 @@ def parse_csv_data(csv_file: IOBase) -> Mapping[TileIdentifier, TileData]:
     type=click.Path(exists=True, file_okay=False),
     required=True,
 )
+@click.option(
+    "-f", "--image_format",
+    default="PNG",
+    type=click.Choice([i.name for i in ImageFormat])
+)
 def main(
         csv_file: Sequence[Tuple[str, IOBase]],
         tile_width: int,
         tile_height: int,
         s3_prefix: str,
-        output_dir: str
+        output_dir: str,
+        image_format: str
 ) -> None:
+    im_format = ImageFormat[image_format]
+
     tile_data_by_image_name: Mapping[str, Mapping[TileIdentifier, TileData]] = {
         name: parse_csv_data(csv_file)
         for name, csv_file in csv_file
@@ -184,7 +192,7 @@ def main(
 
     write_irregular_experiment_json(
         output_dir,
-        ImageFormat.TIFF,
+        im_format,
         image_tile_identifiers=tile_identifier_by_image_name,
         tile_fetchers=tile_fetcher_by_image_name,
         writer_contract=BiohubWriterContract(),
